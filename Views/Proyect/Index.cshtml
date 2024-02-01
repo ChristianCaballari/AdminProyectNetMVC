@@ -1,0 +1,120 @@
+﻿@model PaginationResponse<Proyect>
+@{
+    ViewData["Title"] = "Proyectos";
+}
+@if (@Model.Elements.Count() > 0)
+{
+  
+<div class="row pt-3">
+       
+     <div class="d-flex justify-content-center">
+            <h3><span class="badge bg-gradient">Listado de Proyectos</span></h3>
+     </div>
+
+     <div class="row">
+         <div class="col-12 col-md-4">
+             <div class="d-flex">
+             <label class="form-label m-2">Cantidad de registros a mostrar:</label>
+             <div class="col-auto">
+                <select asp-for="@Model.RecordsByPage" id="quantityRecordsByPage"
+                        class="form-select">
+                    <option>3</option>
+                    <option>5</option>
+                    <option>10</option>
+                    <option>25</option>
+                </select>
+                    </div>
+              </div>
+        </div>
+     </div>
+   
+
+
+
+
+</div>
+<div class="py-2 table-responsive">
+
+          <table class="table table-bordered table-sm">
+               <thead>
+                    <tr class="bg-gradient text-white">              
+                         <th>Proyecto</th>
+                         <th>Cliente</th>
+                         <th style="width:155px">Fecha de Entrega</th>
+                         <th>Descripción</th>
+                         <th class="text-center" style="width:175px">Acciones</th>
+                    </tr>
+               </thead>
+               <tbody>
+                   @foreach(var proyect in Model.Elements)
+                   {
+                     <tr class="table-light">
+                         <td>@proyect.Name</td>
+                         <td>@proyect.Client</td>
+                         <td>@proyect.DeliverDate</td>
+                         <td>@proyect.Description</td>
+                         <td class="text-center">
+                             <div class="d-flex justify-content-end gap-2">
+
+                                <a class="" asp-action="Create" asp-controller="Work" asp-route-id="@proyect.Id"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   data-bs-custom-class="custom-tooltip"
+                                   data-bs-title="Agregar Tarea">
+                                    <i class="bi bi-plus-square-fill"></i>
+                                </a>
+
+                                <a class="" asp-action="Index" asp-controller="Work" asp-route-id="@proyect.Id"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   data-bs-custom-class="custom-tooltip"
+                                   data-bs-title="Ver Tareas">
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+                                <a class="" asp-action="Edit" asp-route-id="@proyect.Id"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   data-bs-custom-class="custom-tooltip"
+                                   data-bs-title="Editar Proyecto">
+                                   <i class="bi bi-pencil-square"></i>
+                               </a>
+                              
+
+                                <form method="post" asp-action="DeleteProyect" asp-route-id="@proyect.Id"
+                                  id="@(String.Format("{0}{1}", "formulario", proyect.Id))" onsubmit="sendForm(event,@proyect.Id,`@(String.Format("{0} {1}", "el proyecto", proyect.Name))`)">
+                                <input type="hidden" value="@proyect.Id" />
+                                    <button type="submit" class=""
+                                            style="border:none;background: none;"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-custom-class="custom-tooltip"
+                                            data-bs-title="Eliminar Proyecto">
+                                            <i class="bi bi-trash3-fill"></i>
+                                     </button>
+                             </form>
+                            </div>
+                         </td>
+                    </tr>
+                    }
+               </tbody>
+       </table>
+       <partial name="_Pagination"/>
+</div>
+}
+else
+{
+    <div class="mt-5">
+       <h5>No elementos a mostrar</h5>
+    </div>
+}
+
+<partial name="_NotificationPartial"/>
+
+@section Scripts{
+    <script src="~/js/initPaginationController.js" asp-append-version="true"></script>
+    <script>
+        initPaginationController('Proyect');
+    </script>
+    <script src="~/js/sendForm.js" asp-append-version="true"></script>
+
+}                         

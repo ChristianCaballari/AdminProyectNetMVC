@@ -1,0 +1,41 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Registro de Usuarios";
+}
+
+<div class="col-7">
+      <div class="card">
+          <div class="row g-0">
+              <div class="col-12 col-md-6 bg-light border-0 d-sm-block">
+                <img src="~/img/imgLogin.jpg" alt="" class="img-fluid w-100 h-100 rounded-start">
+              </div>
+              <div class="col-12 col-md-6">
+                   <div class="card-body">
+                    <h1 class="justify-content-center d-flex">Regístrate</h1>
+                     <form asp-action="Register">     
+                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                         <div class="mb-3">
+                              <label asp-for="Email" class="form-label"></label>
+                              <input asp-for="Email" class="form-control"/>
+                              <span asp-validation-for="Email" class="text-danger"></span>
+                          </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" class="form-control"/>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <button class="btn btn-primary mb-1 w-100" style="background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);">Regístrarme</button>
+                        <a class="btn bg-gradient text-white w-100" asp-action="Login">Login</a>
+                    </form>
+                   </div>
+              </div>
+          </div>
+      </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

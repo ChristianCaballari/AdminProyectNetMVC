@@ -1,0 +1,36 @@
+﻿@model PaginationResponse
+@{
+    var plantillaLink = string.Concat(Model.BaseURL, "?page={0}&recordsByPage={1}");
+    var activeButtonPreviuos = Model.Page > 1;
+    var activeButtonNext = Model.Page < Model.QuantityTotalOfPage;
+}
+
+<nav>
+    <ul class="pagination">
+       
+        <li class="page-item @(activeButtonPreviuos ? null :"disabled")">
+            @if (activeButtonPreviuos)
+            {
+              <a class="page-link" href="@string.Format(plantillaLink,Model.Page - 1, Model.RecordsByPage)">
+                   Anterior
+                </a>
+            }
+            else
+            {
+              <span class="page-link" >Anterior</span>   
+            }
+        </li>
+
+        <li class="page-item @(activeButtonNext ? null:"disabled")">
+            @if (activeButtonNext)
+            {
+                <a class="page-link" href="@string.Format(plantillaLink,Model.Page + 1,Model.RecordsByPage)">
+                    Siguiente</a>
+            }
+            else
+            {
+                <span class="page-link">Siguiente</span>
+            }
+        </li>
+    </ul>
+</nav>

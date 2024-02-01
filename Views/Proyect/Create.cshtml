@@ -1,0 +1,66 @@
+﻿@model ProyectCreationViewModel
+@{
+    ViewData["Title"] = "Crear Proyecto";
+}
+
+<div class="col mt-5">
+      <div class="card">
+          <div class="card-header bg-gradient text-white">Crear Proyecto</div>
+
+        <div class="card-body">
+              <form asp-action="Create">
+                  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                 
+                  <div class="row g-4">
+                      <div class="col-12 col-md-6">
+                          <label asp-for="Name" class="form-label"></label>
+                          <input asp-for="Name" class="form-control"/>
+                          <span asp-validation-for="Name"   class="text-danger"></span>
+                      </div>
+
+                        <div class="col-12 col-md-6">
+                          <label asp-for="Client" class="form-label"></label>
+                          <input asp-for="Client" class="form-control"/>
+                          <span asp-validation-for="Client"   class="text-danger"></span>
+                      </div>
+                  </div>
+
+                   <div class="row g-4">
+
+                    <div class="col-12">
+                      <label asp-for="DeliverDate" class="form-label"></label>
+                        <input asp-for="DeliverDate" class="form-control datepicker" />
+                      <span asp-validation-for="DeliverDate"   class="text-danger"></span>
+                  </div>
+
+                  <div class="col-12">
+                      <label asp-for="Description" class="form-label"></label>
+                      <textarea asp-for="Description" class="form-control" placeholder="Comentarios..."></textarea>
+                      <span asp-validation-for="Description"   class="text-danger"></span>
+                  </div>
+                  <div class="col-12">
+                        <button type="submit" class="btn btn-primary bg-gradient mb-1"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                data-bs-custom-class="custom-tooltip"
+                                data-bs-title="Guardar Proyecto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
+                                <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z" />
+                                <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z" />
+                            </svg>
+                        </button>
+                        <a class="btn btn-secondary mb-1" asp-action="Index"
+                           data-bs-toggle="tooltip"
+                           data-bs-placement="top"
+                           data-bs-custom-class="custom-tooltip"
+                           data-bs-title="Ir a listado de Proyectos"><i class="bi bi-arrow-return-left"></i></a>
+                  </div>
+                  </div>
+              </form>
+        </div>
+      </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

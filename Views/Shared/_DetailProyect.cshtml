@@ -1,0 +1,29 @@
+﻿@model Proyect
+<div class="col-12 col-md-4">
+    <div class="col mt-5">
+        <div class="card">
+            <div class="card-header bg-gradient text-white text-center">Detalle Proyecto</div>
+
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">1) Nombre Proyecto: @Model.Name</li>
+                    <li class="list-group-item">2) Cliente: @Model.Client</li>
+                    <li class="list-group-item">3) Fecha de entrega: @Model.DeliverDate</li>
+                    <li class="list-group-item">4) Descripción: @Model.Description</li>
+
+                    @if ((bool)ViewData["showButton"])
+                    {
+                    <a class="btn bg-gradient text-white" asp-action="Create" asp-controller="Work" asp-route-id="@Model.Id"
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="top"
+                       data-bs-custom-class="custom-tooltip"
+                       data-bs-title="Agregar Tarea">                 
+                        Agregar Tarea
+                    </a>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>

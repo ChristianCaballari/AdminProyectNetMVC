@@ -1,0 +1,44 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.bi-pencil-square, .bi-trash3-fill, .bi-eye-fill, .bi-plus-square-fill {
+    font-size: 25px;
+}
+
+.bi-trash3-fill {
+    color: red;
+}
+.bi-plus-square-fill {
+    color: grey;
+}
+.bi-pencil-square {
+    color: lawngreen;
+}
+.bi-eye-fill {
+    color: #7066e0;
+}
+.bg-gradient {
+    background: #010e56 !important;
+}
+.badge, .btn, .card-header {
+    border-radius: 0rem !important;
+}
+.badge {
+   font-size: .60em;
+   font-weight: normal;
+}

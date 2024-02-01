@@ -1,0 +1,76 @@
+﻿@model WorkCreationViewModel
+
+@{
+    ViewData["Title"] = "Editar Tarea";
+    ViewData["showButton"] = false;
+    
+}
+
+<div class="row">
+    <div class="d-flex justify-content-center mt-3">
+        <h3><span class="badge bg-gradient">Edición de Tareas</span></h3>
+    </div>
+    <partial name="_DetailProyect" model="Model.Proyect" view-data="ViewData" />
+
+    <div class="col-12 col-md-8">
+        <div class="col mt-5">
+            <div class="card">
+                <div class="card-header bg-gradient text-white">Editar Tarea</div>
+
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="@Model.Id" />
+                        <input type="hidden" asp-for="@Model.ProyectId"/>
+                        <div class="row g-4">
+                            <div class="col-12 col-md-6">
+                                <label asp-for="Name" class="form-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label asp-for="Priority" class="form-label"></label>
+                                <select asp-for="Priority" asp-items="Html.GetEnumSelectList<Priority>()"
+                                        class="form-select"></select>
+                                <span asp-validation-for="Priority" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row g-4">
+
+                            <div class="col-12">
+                                <label asp-for="DeliverDate" class="form-label"></label>
+                                <input asp-for="DeliverDate" class="form-control" />
+                                <span asp-validation-for="DeliverDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="Description" class="form-label"></label>
+                                <textarea asp-for="Description" class="form-control" placeholder="Comentarios..."></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary bg-gradient mb-1"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        data-bs-custom-class="custom-tooltip"
+                                        data-bs-title="Guardar Tarea">Guardar Tarea</button>
+                                <a class="btn btn-secondary mb-1" asp-action="Index" asp-controller="Proyect"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   data-bs-custom-class="custom-tooltip"
+                                   data-bs-title="Listado de Proyectos">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
